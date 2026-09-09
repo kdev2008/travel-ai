@@ -1,7 +1,7 @@
 window.TRAVEL_CONFIG={
   DEFAULT_COUNTRY:'IN',
-  API_URL:'',
-  ADMIN_URL:'',
+  API_URL:'https://script.google.com/macros/s/AKfycbxgwRnieoT7LFA0FWyd-PKvsr3nvElDdM1eyUfqvuUGZbxH29HUzwrScxVTXh1fEKNYDw/exec',
+  ADMIN_URL:'https://script.google.com/macros/s/AKfycbxgwRnieoT7LFA0FWyd-PKvsr3nvElDdM1eyUfqvuUGZbxH29HUzwrScxVTXh1fEKNYDw/exec',
   REST_COUNTRIES_BASE:'https://restcountries.com/v3.1',
   OPEN_METEO_FORECAST:'https://api.open-meteo.com/v1/forecast',
   FX_RATE_BASE:'https://api.frankfurter.dev/v2/rate',
