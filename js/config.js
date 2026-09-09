@@ -9,7 +9,7 @@ window.TRAVEL_CONFIG = {
   /* REQUIRED after Apps Script deployment.
      Paste the SAME /exec URL into both. */
   API_URL: 'https://script.google.com/macros/s/AKfycby2v0jwaZiXVl-AoT-pXa8JlwAcjMhk5BU-0YZeEpEZ0JVUQqgqcroOOnScxscWQC4x4A/exec',
-  ADMIN_URL: '',
+  ADMIN_URL: 'https://script.google.com/macros/s/AKfycby2v0jwaZiXVl-AoT-pXa8JlwAcjMhk5BU-0YZeEpEZ0JVUQqgqcroOOnScxscWQC4x4A/exec',
 
   /* Country facts come from js/countries.js, bundled with the site.
      There is no country API to go down, rate-limit or start charging. */
