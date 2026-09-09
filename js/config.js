@@ -2,8 +2,8 @@ window.TRAVEL_CONFIG = {
   DEFAULT_COUNTRY: 'IN',
 
   // REQUIRED after Apps Script deployment:
-  API_URL: 'https://script.google.com/macros/s/AKfycbzOImGOjQKU2c7Y_iFcQLuRoidlbJ0o_j_JD2accMVw-4LuwXHoQCp3Jkknd0KJ0cj7eA/exec',
-  ADMIN_URL: 'https://script.google.com/macros/s/AKfycbzOImGOjQKU2c7Y_iFcQLuRoidlbJ0o_j_JD2accMVw-4LuwXHoQCp3Jkknd0KJ0cj7eA/exec',
+  API_URL: 'https://script.google.com/macros/s/AKfycbwMhIi0tFZRxE0n7Mi-WqXD33ezuzQu0HmI_0fIx7jqFPrDAvHebbsJnQJoLkk1uDAYAQ/exec',
+  ADMIN_URL: 'https://script.google.com/macros/s/AKfycbwMhIi0tFZRxE0n7Mi-WqXD33ezuzQu0HmI_0fIx7jqFPrDAvHebbsJnQJoLkk1uDAYAQ/exec',
 
   REST_COUNTRIES_BASE: 'https://restcountries.com/v3.1',
   OPEN_METEO_FORECAST: 'https://api.open-meteo.com/v1/forecast',
