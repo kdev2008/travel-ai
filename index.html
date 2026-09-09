@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#03101d">
+<title>Travel AI — Explore • Plan • Experience</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="stars"></div><div class="scanline"></div>
+
+<div class="scan-overlay" id="scanOverlay" aria-hidden="true">
+  <div class="scan-shell">
+    <div class="scan-orbit"><div class="scan-core" id="scanFlag">🌍</div><span class="orbit o1"></span><span class="orbit o2"></span><span class="orbit o3"></span></div>
+    <div class="scan-eyebrow">TRAVEL AI // COUNTRY INTELLIGENCE</div>
+    <h2 id="scanCountry">Synchronizing Destination</h2>
+    <div class="scan-progress"><span id="scanProgress"></span></div>
+    <div class="scan-step" id="scanStep">Acquiring geographic target...</div>
+    <div class="scan-grid"><span>GEO</span><span>FX</span><span>WX</span><span>AI</span></div>
+  </div>
+</div>
+
+<header class="topbar">
+<a class="brand" href="#"><span class="brand-plane">✈</span><span><b>TRAVEL AI</b><small>EXPLORE • PLAN • EXPERIENCE</small></span></a>
+<nav class="nav"><a class="active" data-scroll="top">Home</a><a data-scroll="countrySection">Explore</a><a data-action="planner">Itineraries</a><a data-action="tips">Travel Tips</a><a data-action="visa">Visa Info</a><a data-action="budget">Budget Planner</a><a data-action="saved">My Trips</a></nav>
+<div class="top-search"><span>⌕</span><input id="globalSearch" placeholder="Search country, city or place..."></div>
+<div class="top-actions"><button id="themeBtn">☀</button><button id="savedTopBtn">♡</button><button class="avatar" id="adminBtn">◉</button></div>
+</header>
+
+<main class="page" id="top">
+<section class="hero">
+  <div class="hero-copy">
+    <h1>The World<br>Awaits You</h1>
+    <p>Discover countries, plan your journey, get live travel intelligence and let AI guide you like a local.</p>
+    <div class="country-search"><span>⌕</span><input id="countrySearch" placeholder="Search a country..."></div>
+    <div class="metrics">
+      <div><span class="metric-icon">◎</span><b>195</b><small>Countries</small></div>
+      <div><span class="metric-icon">⌖</span><b>10,000+</b><small>Destinations</small></div>
+      <div><span class="metric-icon">▥</span><b>Live</b><small>Travel Info</small></div>
+      <div><span class="metric-icon">◉</span><b>AI</b><small>Companion</small></div>
+    </div>
+    <div class="profile-strip"><small>Your travel profile</small><div><span id="profilePassport"></span><span id="profileCurrency"></span><button id="editProfileBtn">Edit</button></div></div>
+    <blockquote>“Not just a trip. A better you.”</blockquote>
+  </div>
+
+  <div class="map-wrap">
+    <div id="chartdiv"></div><div class="map-glow"></div>
+    <div class="map-label north">NORTH<br>AMERICA</div><div class="map-label south">SOUTH<br>AMERICA</div><div class="map-label europe">EUROPE</div><div class="map-label africa">AFRICA</div><div class="map-label asia">ASIA</div><div class="map-label australia">AUSTRALIA</div><div class="map-label antarctica">ANTARCTICA</div>
+    <div class="country-tooltip" id="countryTooltip"></div>
+  </div>
+
+  <aside class="ai-panel">
+    <div class="ai-head"><div class="bot-ring">🤖</div><div><b>TRAVEL AI</b><small><span class="online-dot"></span> Online • Your Travel Companion</small></div></div>
+    <div class="ai-message"><div class="bot-avatar">🤖</div><div><b>Hi! I'm your AI Travel Guide 🌍</b><p>I know the country you're exploring. Ask about visa, budget, food, transport, safety, culture, hidden gems or itineraries.</p></div></div>
+    <div class="prompt-chips"><button data-prompt="What are the best places to visit here?">Best places to visit?</button><button data-prompt="What visa rules should I check for this country?">Visa requirements?</button><button data-prompt="Give me a realistic daily travel budget here.">Daily budget?</button><button data-prompt="Create a 7-day itinerary for this country.">7-day itinerary?</button><button data-prompt="What safety issues should a traveller know here?">Safety advice?</button></div>
+    <div class="ai-input"><input id="aiInput" placeholder="Type your travel question..."><button id="aiSend">➤</button></div>
+    <div class="ai-response" id="aiResponse"></div><div class="source-list compact" id="aiSources"></div>
+    <div class="ai-tools"><button data-action="planner">▣ Plan My Trip</button><button data-action="compare">◈ Compare Countries</button><button data-action="currency">◉ Currency Converter</button><button data-action="checklist">☑ Travel Checklist</button></div>
+  </aside>
+</section>
+
+<section class="country-section" id="countrySection">
+  <article class="country-card"><div class="country-photo" id="countryPhoto"><div class="photo-overlay"><div class="country-title"><span id="countryFlag">🇮🇳</span><b id="countryName">India</b></div><p id="countryTagline"></p><div class="country-badges"><span id="countryRegionBadge"></span><span id="countrySubregionBadge"></span><button id="saveCountryBtn">＋ Add to My Trips</button></div></div></div></article>
+
+  <div class="country-main">
+    <div class="tabs" id="countryTabs"><button class="active" data-tab="overview">Overview</button><button data-tab="travel">Travel Info</button><button data-tab="places">Places to Visit</button><button data-tab="itinerary">Itinerary</button><button data-tab="costs">Costs</button><button data-tab="visa">Visa</button><button data-tab="safety">Safety</button><button data-tab="culture">Culture</button><button data-tab="faq">FAQ</button></div>
+    <div id="tabOverview" class="tab-pane active">
+      <p class="country-intro" id="countryIntro"></p>
+      <div class="country-ai-brief"><div class="brief-head"><span>◉</span><b>AI Traveller Snapshot</b><small id="briefStatus">Ready</small></div><div id="countryAiText">Choose a country to generate a live traveller snapshot.</div><div class="source-list compact" id="countryAiSources"></div></div>
+      <div class="info-grid">
+        <div class="info-card"><span>⌖</span><small>Capital</small><b id="capital">—</b></div><div class="info-card"><span>＄</span><small>Currency</small><b id="currency">—</b></div><div class="info-card"><span>↗</span><small>Exchange Rate</small><b id="exchangeRate">—</b><em id="rateTime"></em></div><div class="info-card"><span>◧</span><small>Language</small><b id="languages">—</b></div>
+        <div class="info-card"><span>♟</span><small>Population</small><b id="population">—</b></div><div class="info-card"><span>◷</span><small>Time Zone</small><b id="timezone">—</b></div><div class="info-card"><span>☎</span><small>Calling Code</small><b id="callingCode">—</b></div><div class="info-card"><span>⚡</span><small>Driving</small><b id="drivingSide">—</b></div>
+      </div>
+    </div>
+    <div id="tabDynamic" class="tab-pane dynamic-pane"><div class="dynamic-head"><h3 id="dynamicTitle"></h3><button id="dynamicRefresh">Refresh with AI</button></div><div id="dynamicContent" class="intel-content"></div><div class="source-list" id="dynamicSources"></div></div>
+  </div>
+
+  <aside class="quick-facts"><div class="weather-card"><div><small>Capital Weather</small><b id="weatherTemp">--°</b><span id="weatherText">Loading...</span></div><div class="weather-icon" id="weatherIcon">◌</div></div><h3>Quick Facts</h3><div id="quickFacts"></div></aside>
+</section>
+
+<section class="places-section"><div class="section-title"><h2>Top Places to Visit</h2><button id="viewPlacesBtn">AI Discover More →</button></div><div class="places-grid" id="placesGrid"></div></section>
+<section class="smart-tools"><div class="section-title"><h2>Smart Travel Tools</h2><span>Live data + AI</span></div><div class="tool-grid"><article data-action="planner"><span>🧭</span><b>AI Trip Planner</b><small>Day-by-day plan</small></article><article data-action="budget"><span>💳</span><b>Budget Intelligence</b><small>Realistic cost bands</small></article><article data-action="visa"><span>🛂</span><b>Visa Research</b><small>Official-source research</small></article><article data-action="safety"><span>🛡</span><b>Safety Brief</b><small>Current precautions</small></article><article data-action="compare"><span>⚖</span><b>Compare Countries</b><small>Cost, season, culture, visa</small></article><article data-action="currency"><span>💱</span><b>Currency Converter</b><small>Reference exchange rates</small></article></div></section>
+<section class="footer-quote"><div><h2>“Collect moments<br>not things.”</h2><span></span></div></section>
+</main>
+
+<div class="modal-backdrop" id="modalBackdrop"></div><section class="modal-shell" id="toolModal" aria-hidden="true"><button class="modal-x" id="modalClose">×</button><div id="modalBody"></div></section>
+
+<script src="https://cdn.amcharts.com/lib/5/index.js"></script><script src="https://cdn.amcharts.com/lib/5/map.js"></script><script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script><script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+<script src="js/config.js"></script><script src="js/app.js"></script>
+</body></html>
