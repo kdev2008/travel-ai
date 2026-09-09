@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#03101d">
+  <meta name="description" content="Travel AI — interactive world travel intelligence and AI trip planning.">
+  <meta property="og:title" content="Travel AI — Explore • Plan • Experience">
+  <meta property="og:description" content="Search or click any country for live facts, exchange rates, capital weather and a short AI traveller brief.">
+  <meta property="og:type" content="website">
+  <title>Travel AI — Explore • Plan • Experience</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><text y='50' font-size='50'>✈</text></svg>">
+</head>
+<body>
+<div class="stars" aria-hidden="true"></div>
+<div class="scanlines" aria-hidden="true"></div>
+
+<a class="skip-link" href="#countrySection">Skip to destination details</a>
+
+<!-- Country loading overlay -->
+<div class="scan-overlay" id="scanOverlay" aria-hidden="true" role="status">
+  <div class="scan-shell">
+    <div class="scan-orbit" aria-hidden="true">
+      <div class="scan-core" id="scanFlag">🌍</div>
+      <span class="orbit o1"></span>
+      <span class="orbit o2"></span>
+      <span class="orbit o3"></span>
+    </div>
+    <div class="scan-eyebrow">Travel AI · destination intelligence</div>
+    <h2 id="scanCountry">Synchronizing destination</h2>
+    <div class="scan-progress"><span id="scanProgress"></span></div>
+    <div class="scan-step" id="scanStep">Acquiring geographic target...</div>
+    <div class="scan-grid">
+      <span id="scanGeo">GEO</span>
+      <span id="scanFx">FX</span>
+      <span id="scanWx">WX</span>
+      <span id="scanAi">AI</span>
+    </div>
+  </div>
+</div>
+
+<header class="topbar">
+  <a class="brand" href="#top">
+    <span class="brand-plane" aria-hidden="true">✈</span>
+    <span><b>TRAVEL AI</b><small>EXPLORE • PLAN • EXPERIENCE</small></span>
+  </a>
+
+  <nav class="nav" aria-label="Main">
+    <a class="active" role="button" tabindex="0" data-scroll="top">Home</a>
+    <a role="button" tabindex="0" data-scroll="countrySection">Explore</a>
+    <a role="button" tabindex="0" data-action="planner">Itineraries</a>
+    <a role="button" tabindex="0" data-action="tips">Travel tips</a>
+    <a role="button" tabindex="0" data-action="visa">Visa info</a>
+    <a role="button" tabindex="0" data-action="budget">Budget planner</a>
+    <a role="button" tabindex="0" data-action="saved">My trips</a>
+  </nav>
+
+  <div class="top-search search-shell">
+    <span aria-hidden="true">⌕</span>
+    <label class="sr-only" for="globalSearch">Search for a country</label>
+    <input id="globalSearch" autocomplete="off" role="combobox" aria-expanded="false"
+           aria-autocomplete="list" aria-controls="globalResults" placeholder="Search country...">
+    <div class="search-results" id="globalResults" role="listbox"></div>
+  </div>
+
+  <div class="top-actions">
+    <button id="themeBtn" title="Reduce glow" aria-label="Reduce glow">☀</button>
+    <button id="savedTopBtn" title="Saved trips" aria-label="Saved trips">♡</button>
+    <button class="avatar" id="adminBtn" title="Admin" aria-label="Open admin">◉</button>
+  </div>
+</header>
+
+<main class="page" id="top">
+  <section class="hero">
+    <div class="hero-copy">
+      <h1>The world<br>awaits you</h1>
+      <p>Click anywhere on the map or search any country. Travel AI pulls together live facts, rates, weather and a short traveller brief.</p>
+
+      <div class="country-search search-shell">
+        <span aria-hidden="true">⌕</span>
+        <label class="sr-only" for="countrySearch">Search for a country</label>
+        <input id="countrySearch" autocomplete="off" role="combobox" aria-expanded="false"
+               aria-autocomplete="list" aria-controls="countryResults" placeholder="Search a country...">
+        <button id="countrySearchBtn">GO</button>
+        <div class="search-results" id="countryResults" role="listbox"></div>
+      </div>
+
+      <div class="metrics">
+        <div><span class="metric-icon" aria-hidden="true">◎</span><b>195</b><small>Countries</small></div>
+        <div><span class="metric-icon" aria-hidden="true">⌖</span><b>10,000+</b><small>Destinations</small></div>
+        <div><span class="metric-icon" aria-hidden="true">▥</span><b>Live</b><small>Travel info</small></div>
+        <div><span class="metric-icon" aria-hidden="true">◉</span><b>AI</b><small>Companion</small></div>
+      </div>
+
+      <div class="profile-strip">
+        <small>Your travel profile</small>
+        <div>
+          <span id="profilePassport"></span>
+          <span id="profileCurrency"></span>
+          <button id="editProfileBtn">Edit</button>
+        </div>
+      </div>
+
+      <blockquote>“Not just a trip. A better you.”</blockquote>
+    </div>
+
+    <div class="map-wrap">
+      <div id="chartdiv" role="application" aria-label="World map. Click a country to load it."></div>
+      <div class="map-glow" aria-hidden="true"></div>
+      <div class="map-label north" aria-hidden="true">NORTH<br>AMERICA</div>
+      <div class="map-label south" aria-hidden="true">SOUTH<br>AMERICA</div>
+      <div class="map-label europe" aria-hidden="true">EUROPE</div>
+      <div class="map-label africa" aria-hidden="true">AFRICA</div>
+      <div class="map-label asia" aria-hidden="true">ASIA</div>
+      <div class="map-label australia" aria-hidden="true">AUSTRALIA</div>
+      <div class="map-label antarctica" aria-hidden="true">ANTARCTICA</div>
+      <div class="country-tooltip" id="countryTooltip" aria-hidden="true"></div>
+    </div>
+
+    <aside class="ai-panel" aria-label="Travel AI assistant">
+      <div class="ai-head">
+        <div class="bot-ring" aria-hidden="true">🤖</div>
+        <div>
+          <b>TRAVEL AI</b>
+          <small><span class="online-dot" aria-hidden="true"></span> Context-aware travel companion</small>
+        </div>
+      </div>
+
+      <div class="ai-message">
+        <div class="bot-avatar" aria-hidden="true">🤖</div>
+        <div>
+          <b>Ask about the country you have selected.</b>
+          <p>Answers stay short and practical. Official links appear below as separate source buttons.</p>
+        </div>
+      </div>
+
+      <div class="prompt-chips">
+        <button data-prompt="What are the best places to visit here?">Best places?</button>
+        <button data-prompt="What visa or entry rules should I check?">Visa?</button>
+        <button data-prompt="What is a realistic daily budget?">Budget?</button>
+        <button data-prompt="Create a 7-day itinerary.">7-day itinerary?</button>
+        <button data-prompt="What safety points should I know?">Safety?</button>
+      </div>
+
+      <div class="ai-input">
+        <label class="sr-only" for="aiInput">Ask a travel question</label>
+        <input id="aiInput" placeholder="Ask a travel question...">
+        <button id="aiSend" aria-label="Send question">➤</button>
+      </div>
+
+      <div class="ai-response" id="aiResponse" aria-live="polite">
+        <div class="brief-empty">Select a country to activate Travel AI.</div>
+      </div>
+      <div class="source-list compact" id="aiSources"></div>
+
+      <div class="ai-tools">
+        <button data-action="planner">▣ Plan my trip</button>
+        <button data-action="compare">◈ Compare countries</button>
+        <button data-action="currency">◉ Currency converter</button>
+        <button data-action="checklist">☑ Checklist</button>
+      </div>
+    </aside>
+  </section>
+
+  <section class="country-section" id="countrySection">
+    <article class="country-card">
+      <div class="country-photo" id="countryPhoto">
+        <div class="photo-overlay">
+          <div class="country-title"><span id="countryFlag" aria-hidden="true">🌍</span><b id="countryName">Choose a country</b></div>
+          <p id="countryTagline">Click the map or use search to begin.</p>
+          <div class="country-badges">
+            <span id="countryRegionBadge">—</span>
+            <span id="countrySubregionBadge">—</span>
+            <button id="saveCountryBtn" aria-pressed="false">＋ Add to my trips</button>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <div class="country-main">
+      <div class="tabs" id="countryTabs" role="tablist" aria-label="Country information">
+        <button class="active" role="tab" aria-selected="true" data-tab="overview">Overview</button>
+        <button role="tab" aria-selected="false" data-tab="travel">Travel info</button>
+        <button role="tab" aria-selected="false" data-tab="places">Places to visit</button>
+        <button role="tab" aria-selected="false" data-tab="itinerary">Itinerary</button>
+        <button role="tab" aria-selected="false" data-tab="costs">Costs</button>
+        <button role="tab" aria-selected="false" data-tab="visa">Visa</button>
+        <button role="tab" aria-selected="false" data-tab="safety">Safety</button>
+        <button role="tab" aria-selected="false" data-tab="culture">Culture</button>
+        <button role="tab" aria-selected="false" data-tab="faq">FAQ</button>
+      </div>
+
+      <div id="tabOverview" class="tab-pane active" role="tabpanel">
+        <p class="country-intro" id="countryIntro">Select a country to load live country intelligence.</p>
+
+        <div class="country-ai-brief">
+          <div class="brief-head">
+            <span aria-hidden="true">◉</span><b>AI traveller snapshot</b><small id="briefStatus">Standby</small>
+          </div>
+          <div id="countryAiText" class="brief-render" aria-live="polite">
+            <div class="brief-empty">A short traveller summary appears here once the country loads.</div>
+          </div>
+          <div class="source-list compact" id="countryAiSources"></div>
+        </div>
+
+        <div class="info-grid">
+          <div class="info-card"><span aria-hidden="true">⌖</span><small>Capital</small><b id="capital">—</b></div>
+          <div class="info-card"><span aria-hidden="true">＄</span><small>Currency</small><b id="currency">—</b></div>
+          <div class="info-card"><span aria-hidden="true">↗</span><small>Exchange rate</small><b id="exchangeRate">—</b><em id="rateTime"></em></div>
+          <div class="info-card"><span aria-hidden="true">◧</span><small>Language</small><b id="languages">—</b></div>
+          <div class="info-card"><span aria-hidden="true">♟</span><small>Population</small><b id="population">—</b></div>
+          <div class="info-card"><span aria-hidden="true">◷</span><small>Time zone</small><b id="timezone">—</b></div>
+          <div class="info-card"><span aria-hidden="true">☎</span><small>Calling code</small><b id="callingCode">—</b></div>
+          <div class="info-card"><span aria-hidden="true">↔</span><small>Driving</small><b id="drivingSide">—</b></div>
+        </div>
+      </div>
+
+      <div id="tabDynamic" class="tab-pane dynamic-pane" role="tabpanel">
+        <div class="dynamic-head">
+          <div>
+            <small class="intel-kicker">Travel intelligence</small>
+            <h3 id="dynamicTitle">Travel information</h3>
+          </div>
+          <button id="dynamicRefresh">Refresh</button>
+        </div>
+        <div id="dynamicContent" class="intel-content brief-render" aria-live="polite"></div>
+        <div class="detail-note" id="detailNote">For current conditions, open the official sources below.</div>
+        <div class="source-list" id="dynamicSources"></div>
+      </div>
+    </div>
+
+    <aside class="quick-facts" aria-label="Quick facts">
+      <div class="weather-card">
+        <div>
+          <small>Capital weather</small>
+          <b id="weatherTemp">--°</b>
+          <span id="weatherText">Waiting...</span>
+        </div>
+        <div class="weather-icon" id="weatherIcon" aria-hidden="true">◌</div>
+      </div>
+      <h3>Quick facts</h3>
+      <div id="quickFacts"><div class="fact-row"><span>Status</span><b>Standby</b></div></div>
+    </aside>
+  </section>
+
+  <section class="places-section">
+    <div class="section-title"><h2>Top places to visit</h2><button id="viewPlacesBtn">Ask AI for more</button></div>
+    <div class="places-grid" id="placesGrid"></div>
+  </section>
+
+  <section class="smart-tools">
+    <div class="section-title"><h2>Smart travel tools</h2><span>Live data and AI</span></div>
+    <div class="tool-grid">
+      <article data-action="planner" role="button" tabindex="0"><span aria-hidden="true">🧭</span><b>Trip planner</b><small>Short day-by-day plan</small></article>
+      <article data-action="budget" role="button" tabindex="0"><span aria-hidden="true">💳</span><b>Budget estimate</b><small>Simple cost bands</small></article>
+      <article data-action="visa" role="button" tabindex="0"><span aria-hidden="true">🛂</span><b>Visa research</b><small>Short answer plus official links</small></article>
+      <article data-action="safety" role="button" tabindex="0"><span aria-hidden="true">🛡</span><b>Safety brief</b><small>Precautions plus sources</small></article>
+      <article data-action="compare" role="button" tabindex="0"><span aria-hidden="true">⚖</span><b>Compare countries</b><small>Decision-focused comparison</small></article>
+      <article data-action="currency" role="button" tabindex="0"><span aria-hidden="true">💱</span><b>Currency converter</b><small>Reference exchange rates</small></article>
+    </div>
+  </section>
+
+  <section class="footer-quote">
+    <div><h2>“Collect moments<br>not things.”</h2></div>
+  </section>
+</main>
+
+<div class="modal-backdrop" id="modalBackdrop"></div>
+<section class="modal-shell" id="toolModal" aria-hidden="true" role="dialog" aria-modal="true">
+  <button class="modal-x" id="modalClose" aria-label="Close">×</button>
+  <div id="modalBody"></div>
+</section>
+
+<noscript>
+  <div class="noscript-note">Travel AI needs JavaScript to load country data, rates and weather.</div>
+</noscript>
+
+<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/map.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+<script src="js/config.js"></script>
+<script src="js/countries.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
