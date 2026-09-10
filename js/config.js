@@ -5,8 +5,8 @@ window.TRAVEL_CONFIG = {
 
   /* REQUIRED after Apps Script deployment: paste the /exec URL into API_URL.
      Leave ADMIN_URL empty. The admin link is private (run showAdminLink in Apps Script). */
-  API_URL: '',
-  ADMIN_URL: '',
+  API_URL: 'https://script.google.com/macros/s/AKfycbwNKbb30E1SHJvlqebkwiC_vVP4kS4suxpcJl35WqX5_yLNkwl-kLv3gNephmggCgmmXQ/exec',
+  ADMIN_URL: 'https://script.google.com/macros/s/AKfycbwNKbb30E1SHJvlqebkwiC_vVP4kS4suxpcJl35WqX5_yLNkwl-kLv3gNephmggCgmmXQ/exec',
 
   /* Build 4.4 instant layer: where the published country JSON lives, relative to
      index.html (must match "Path" in Admin → Instant static layer). */
