@@ -4,8 +4,8 @@
 window.TRAVEL_CONFIG = {
 
   /* REQUIRED after Apps Script deployment. Paste the SAME /exec URL into both. */
-  API_URL: '',
-  ADMIN_URL: '',
+  API_URL: 'https://script.google.com/macros/s/AKfycby5HFn9bLYHWPzgVvl4PvieS9Ehlq5TmIVEqpUA6Njq071DoZ7d154QYLP-4HdU1Z5fVQ/exec',
+  ADMIN_URL: 'https://script.google.com/macros/s/AKfycby5HFn9bLYHWPzgVvl4PvieS9Ehlq5TmIVEqpUA6Njq071DoZ7d154QYLP-4HdU1Z5fVQ/exec',
 
   /* Country facts and the India boundary are embedded in js/app.js.
      There is no country API to go down, rate-limit or start charging. */
